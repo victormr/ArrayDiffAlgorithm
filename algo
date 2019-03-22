@@ -1,5 +1,5 @@
-var arrayAsis: [Int] = []
-        var arrayTobe: [Int] = []
+var arrayAsis: [Int] = [1,2,3,4]
+        var arrayTobe: [Int] = [1,5,2,4,6]
         
         var markedIndex = 0
         
@@ -17,7 +17,7 @@ var arrayAsis: [Int] = []
                 } else {
                     addedTemp.append(arrayTobe[markedIndex])
                     removedTemp.append(arrayAsis[index])
-                    for secondIndex in markedIndex + 2..<arrayTobe.count {
+                    for secondIndex in markedIndex + 1..<arrayTobe.count {
                         if arrayTobe[secondIndex] == arrayAsis[index] {
                             addedFinal.append(contentsOf: addedTemp)
                             removedTemp = []
@@ -45,7 +45,6 @@ var arrayAsis: [Int] = []
                 removedFinal.append(arrayAsis[indexAsis])
             }
         }
-        
         
         print("removidos: \(removedFinal)")
         print("inseridos: \(addedFinal)")
