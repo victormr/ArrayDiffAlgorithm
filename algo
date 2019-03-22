@@ -1,0 +1,51 @@
+var arrayAsis: [Int] = []
+        var arrayTobe: [Int] = []
+        
+        var markedIndex = 0
+        
+        var addedTemp: [Int] = []
+        var removedTemp: [Int] = []
+        
+        var addedFinal: [Int] = []
+        var removedFinal: [Int] = []
+        
+        for index in 0..<arrayAsis.count {
+            if arrayTobe.count > markedIndex {
+                if arrayTobe[markedIndex] == arrayAsis[index] {
+                    markedIndex = index + 1
+                    continue
+                } else {
+                    addedTemp.append(arrayTobe[markedIndex])
+                    removedTemp.append(arrayAsis[index])
+                    for secondIndex in markedIndex + 2..<arrayTobe.count {
+                        if arrayTobe[secondIndex] == arrayAsis[index] {
+                            addedFinal.append(contentsOf: addedTemp)
+                            removedTemp = []
+                            addedTemp = []
+                            markedIndex = secondIndex + 1
+                            break
+                        } else {
+                            addedTemp.append(arrayTobe[secondIndex])
+                        }
+                    }
+                    removedFinal.append(contentsOf: removedTemp)
+                    removedTemp = []
+                    addedTemp = []
+                }
+            } else {
+                break
+            }
+        }
+        if arrayTobe.count > markedIndex {
+            for indexTobe in markedIndex..<arrayTobe.count {
+                addedFinal.append(arrayTobe[indexTobe])
+            }
+        } else if arrayAsis.count > markedIndex {
+            for indexAsis in markedIndex..<arrayAsis.count {
+                removedFinal.append(arrayAsis[indexAsis])
+            }
+        }
+        
+        
+        print("removidos: \(removedFinal)")
+        print("inseridos: \(addedFinal)")
